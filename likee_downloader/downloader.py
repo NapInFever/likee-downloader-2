@@ -3,6 +3,7 @@ import os
 import json
 import requests
 import argparse
+
 from tqdm import tqdm
 from pprint import pprint
 from selenium import webdriver
@@ -10,11 +11,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 
+from . import __version__, __author__
 
 class LikeeDownloader:
     
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description='likee-downloader — by Richard Mwewa', epilog='A program for downloading videos from Likee, given a username')
+        self.parser = argparse.ArgumentParser(description=f'likee-downloader — by {__author__}', epilog='A program for downloading videos from Likee, given a username')
         self.parser.add_argument('username', help='username')
         self.parser.add_argument('-s', '--screenshot', help='capture a screenshot of the target\'s profile', action='store_true')
         self.parser.add_argument('-c', '--videos-count', help='number of videos to download (default: %(default)s)', default=10, dest='videos_count', type=int)
@@ -25,14 +27,13 @@ class LikeeDownloader:
         option.add_argument('--headless')
         self.driver = webdriver.Firefox(options=option)
         
-        self.program_version_number = "1.5.5"
         self.user_profile_url = "https://likee.video/@{}"
         self.user_videos_api_endpoint = "https://api.like-video.com/likee-activity-flow-micro/videoApi/getUserVideo"
         self.update_check_endpoint = "https://api.github.com/repos/rly0nheart/likee-downloader/releases/latest"
         
     def notice(self):
         return f"""
-    likee-downloader v{self.program_version_number} Copyright (C) 2023  Richard Mwewa
+    likee-downloader v{__version__} Copyright (C) 2023  {__author__}
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ class LikeeDownloader:
     def check_updates(self):
         print(self.notice())
         response = requests.get(self.update_check_endpoint).json()
-        if response['tag_name'] == self.program_version_number:
+        if response['tag_name'] == __version__:
             """Ignore if the program is up to date"""
             pass
         else:
