@@ -1,5 +1,5 @@
 # Note
-**likee-downloader is no longer working, due to anti-scraping changes on the [likee website](https://likee.video). I will start working on an alternative solution.**
+**likee-downloader does not work in some countries. So far, the noticeable country where it works is Russia.**
 
 # Likee Downloader
 A program for downloading videos from Likee, given a username
