@@ -35,7 +35,7 @@ class LikeeDownloader:
         return f"""
     likee-downloader v{__version__} Copyright (C) 2023  {__author__}
     
-    testThis program is free software: you can redistribute it and/or modify
+    This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or (at your option) any later version.sfg
     """
@@ -65,7 +65,7 @@ class LikeeDownloader:
         str_data = regex_pattern.search(response.text).group(1)
         json_data = json.loads(str_data)
         payload = {"country": "US",
-                   "count": 100,
+                   "count": 200,
                    "page": 1,
                    "pageSize": 28,
                    "tabType": 0,
